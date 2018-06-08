@@ -60,7 +60,7 @@ public final class BrowserDriver implements WebDriver {
 			("Driver file geckodriver.exe does not exist!");
 		}
 		try {
-			System.setProperty("webdriver.chrome.driver", geckoDriverPath);
+			System.setProperty("webdriver.gecko.driver", geckoDriverPath);
 			return new FirefoxDriver();
 		} catch (Exception e) {
 			log.error("Could not create Firefox driver.");
