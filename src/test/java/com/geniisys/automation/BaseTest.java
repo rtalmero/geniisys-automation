@@ -25,7 +25,8 @@ public abstract class BaseTest {
 
 	@AfterTest
 	public void breakDown() {
-		//		driver.close();
-		System.out.println("TEST DONE!");
+		if (null != driver) {
+			driver.quit();
+		}
 	}
 }
