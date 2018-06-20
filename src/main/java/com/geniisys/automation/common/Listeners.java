@@ -10,11 +10,11 @@ import com.geniisys.automation.BaseTest;
 
 public class Listeners implements ITestListener{
 	
-	private Logger log = LogManager.getLogger(BrowserDriver.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(BrowserDriver.class.getName());
 	
 	@Override
 	public void onStart(ITestContext arg0) {
-		log.info(arg0.getCurrentXmlTest().getName() + " test STARTED");
+		LOGGER.info(arg0.getCurrentXmlTest().getName() + " test STARTED");
 	}
 
 	@Override
@@ -24,22 +24,27 @@ public class Listeners implements ITestListener{
 
 	@Override
 	public void onTestSkipped(ITestResult arg0) {
+		//DO NOTHING
 	}
 
 	@Override
 	public void onTestStart(ITestResult arg0) {
+		//DO NOTHING
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult arg0) {
+		//DO NOTHING
 	}
 	
 	@Override
 	public void onFinish(ITestContext arg0) {
+		//DO NOTHING
 	}
 	
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
+		//DO NOTHING
 	}
 
 }
