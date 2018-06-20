@@ -192,7 +192,7 @@ public final class BrowserDriver implements WebDriver {
 		try {
 			Files.copy(src, new File("C:/SELENIUM-AUTOMATION/SCREENSHOTS/" + testName + " "+ sysdate + ".png"));
 		} catch (IOException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
