@@ -11,7 +11,7 @@ import com.geniisys.automation.marketing.createquote.pages.QuotationInformationP
 public class CreateQuotationMenu {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(CreateQuotationMenu.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(CreateQuotationMenu.class.getName());
 
 
 	private final By quotationInformation = By.xpath("//a[@id='quoteInformation']");
@@ -23,9 +23,9 @@ public class CreateQuotationMenu {
 	public QuotationInformationPage goToQuotationInfomation() {
 		try {
 			driver.findClickableElement(quotationInformation).click();
-			log.info("'Quotation Information' menu clicked.");
+			LOGGER.info("'Quotation Information' menu clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new QuotationInformationPage(driver);
 	}

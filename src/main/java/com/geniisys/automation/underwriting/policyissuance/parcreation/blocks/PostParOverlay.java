@@ -14,7 +14,7 @@ import com.geniisys.automation.common.BrowserDriver;
 public class PostParOverlay {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(PostParOverlay.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(PostParOverlay.class.getName());
 
 	private long timeout = 10;
 	private long pollingTime = 1;
@@ -33,9 +33,9 @@ public class PostParOverlay {
 		waitForMessageToDisplay();
 		try {
 			driver.findClickableElement(postBtnLocator).click();
-			log.info("Post button clicked.");
+			LOGGER.info("Post button clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -43,9 +43,9 @@ public class PostParOverlay {
 		waitForMessageToDisplay();
 		try {
 			driver.findClickableElement(cancelBtnLocator).click();
-			log.info("Cancel button clicked.");
+			LOGGER.info("Cancel button clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -53,9 +53,9 @@ public class PostParOverlay {
 		waitToFinishLoading();
 		try {
 			driver.findClickableElement(okBtnLocator).click();
-			log.info("Ok button clicked.");
+			LOGGER.info("Ok button clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		waitForMessageToClose();
 	}

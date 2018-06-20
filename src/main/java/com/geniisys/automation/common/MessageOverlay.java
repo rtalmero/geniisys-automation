@@ -13,11 +13,11 @@ import org.openqa.selenium.support.ui.FluentWait;
 public class MessageOverlay {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(MessageOverlay.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(MessageOverlay.class.getName());
 
 
-	private long TIMEOUT = 10;
-	private long POLLING_TIME = 1;
+	private static final long TIMEOUT = 10;
+	private static final long POLLING_TIME = 1;
 
 	private By messageOvlLocator = By.xpath("//div[starts-with(@id,'modal_dialog') "
 			+ "and @class='dialog']");
@@ -63,9 +63,9 @@ public class MessageOverlay {
 		waitForMessageToDisplay();
 		try {
 			driver.findClickableElement(okBtnLocator).click();
-			log.info("'Ok' button clicked in the prompt.");
+			LOGGER.info("'Ok' button clicked in the prompt.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		waitForMessageToClose();
 	}
@@ -86,11 +86,11 @@ public class MessageOverlay {
 		fluentlyWait()
 		.until(ExpectedConditions.
 				invisibilityOfElementLocated(messageOvlLocator));
-		log.info("Message prompt closed.");
+		LOGGER.info("Message prompt closed.");
 	}
 
 	private FluentWait<BrowserDriver> fluentlyWait() {
-		FluentWait<BrowserDriver> wait = new FluentWait<BrowserDriver>(driver);
+		FluentWait<BrowserDriver> wait = new FluentWait<>(driver);
 
 		wait = wait.withTimeout(TIMEOUT, TimeUnit.SECONDS)
 				.pollingEvery(POLLING_TIME, TimeUnit.SECONDS)

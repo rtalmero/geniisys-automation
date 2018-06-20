@@ -9,7 +9,7 @@ import org.openqa.selenium.TimeoutException;
 public class ModalDialog {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(ModalDialog.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(ModalDialog.class.getName());
 
 	private By modalDialogOvlLocator = By.xpath("//div[starts-with(@id,'modal_dialog')"
 			+ " and @class='dialogOverlay']");
@@ -30,31 +30,31 @@ public class ModalDialog {
 		if (isDisplayed()) {
 			try {
 				driver.findElement(findFldLocator).click();
-				log.info("Find field clicked.");
+				LOGGER.info("Find field clicked.");
 				driver.findElement(findFldLocator).clear();
-				log.info("Find field cleared.");
+				LOGGER.info("Find field cleared.");
 				driver.findElement(findFldLocator).sendKeys(keyword, Keys.ENTER);
-				log.info("Find field value set to '" + keyword + "'.");
+				LOGGER.info("Find field value set to '" + keyword + "'.");
 			} catch (TimeoutException e) {
-				log.error(e);
+				LOGGER.error(e);
 			}
 
 			try {
 				driver.findElement(By.xpath("//div[starts-with(@class,'mtgInnerCell') "
 						+ "and contains(text(),"
 						+ " \"" + keyword + "\")]")).click();
-				log.info("Record that contains text '" + keyword + "' clicked.");
+				LOGGER.info("Record that contains text '" + keyword + "' clicked.");
 			} catch (TimeoutException e) {
-				log.error(e);
+				LOGGER.error(e);
 			}
 			try {
 				driver.findClickableElement(okBtnLocator).click();
-				log.info("'Ok' button clicked.");
+				LOGGER.info("'Ok' button clicked.");
 			} catch (TimeoutException e) {
-				log.error(e);
+				LOGGER.error(e);
 			}
 		}
-		log.info("Prompt closed.");
+		LOGGER.info("Prompt closed.");
 	}
 
 }

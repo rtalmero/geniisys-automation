@@ -11,7 +11,7 @@ import com.geniisys.automation.underwriting.policyissuance.parcreation.pages.Pol
 public class UnderwritingMainMenu {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(UnderwritingMainMenu.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(UnderwritingMainMenu.class.getName());
 
 	private final By policyIssuanceMnuLocator = By.xpath("//a[@id='policyIssuance']");
 	private final By parCreationMnuLocator = By.xpath("//a[@id='parCreation']");
@@ -24,7 +24,7 @@ public class UnderwritingMainMenu {
 		try {
 			driver.findElement(policyIssuanceMnuLocator).click();
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new UnderwritingMainMenu(driver);
 	}
@@ -32,9 +32,9 @@ public class UnderwritingMainMenu {
 	public PolicyParCreationPage goToParCreationPage() {
 		try {
 			driver.findClickableElement(parCreationMnuLocator).click();
-			log.info("Go to Par Creation page.");
+			LOGGER.info("Go to Par Creation page.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new PolicyParCreationPage(driver);
 	}

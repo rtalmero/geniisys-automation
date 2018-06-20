@@ -12,7 +12,7 @@ import com.geniisys.automation.underwriting.policyissuance.parcreation.pages.Ent
 public class BillSubmenu {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(BillSubmenu.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(BillSubmenu.class.getName());
 
 	private By enterBillPremiumsLnkLocator = By.xpath("//a[@id='enterBillPremiums']");
 	private By enterInvoiceCommissionLnkLocator = By.xpath("//a[@id='enterInvoiceCommission']");
@@ -24,9 +24,9 @@ public class BillSubmenu {
 	public EnterBillPremiumsPage goToEnterBillPremium() {
 		try {
 			driver.findClickableElement(enterBillPremiumsLnkLocator).click();
-			log.info("'Enter Bill Premiums' menu clicked.");
+			LOGGER.info("'Enter Bill Premiums' menu clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new EnterBillPremiumsPage(driver);
 	}
@@ -34,9 +34,9 @@ public class BillSubmenu {
 	public EnterInvoiceCommissionPage goToInvoiceCommission() {
 		try {
 			driver.findClickableElement(enterInvoiceCommissionLnkLocator).click();
-			log.info("'Enter Invoice Commission' menu clicked.");
+			LOGGER.info("'Enter Invoice Commission' menu clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new EnterInvoiceCommissionPage(driver);
 	}

@@ -28,7 +28,7 @@ import com.google.common.io.Files;
 public final class BrowserDriver implements WebDriver {
 
 	private WebDriver driver;
-	private Logger log = LogManager.getLogger(BrowserDriver.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(BrowserDriver.class.getName());
 
 	private String driverPath;
 	private int timeOut;
@@ -44,7 +44,7 @@ public final class BrowserDriver implements WebDriver {
 		try {
 			prop.load(new FileInputStream("C:/SELENIUM-AUTOMATION/CONFIG/webdriver.properties"));
 		} catch (IOException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 
 		driverPath = prop.getProperty("path");
@@ -62,15 +62,13 @@ public final class BrowserDriver implements WebDriver {
 	private WebDriver firefoxDriver() {
 		String geckoDriverPath = driverPath + "geckodriver.exe";
 		if (!new File(geckoDriverPath).exists()) {
-			log.error("Driver file geckodriver.exe does not exist!");
-			throw new RuntimeException
-			("Driver file geckodriver.exe does not exist!");
+			LOGGER.error("Driver file geckodriver.exe does not exist!");
 		}
 		try {
 			System.setProperty("webdriver.gecko.driver", geckoDriverPath);
 			return new FirefoxDriver();
 		} catch (Exception e) {
-			log.error("Could not create Firefox driver.");
+			LOGGER.error("Could not create Firefox driver.");
 			throw new RuntimeException("Could not create Firefox driver.");
 		}
 	}
@@ -78,15 +76,14 @@ public final class BrowserDriver implements WebDriver {
 	private WebDriver chromeDriver() {
 		String chromeDriverPath = driverPath + "chromedriver.exe";
 		if (!new File(chromeDriverPath).exists()) {
-			throw new RuntimeException
-			("Driver file chromedriver.exe does not exist!");
+			LOGGER.error("Driver file chromedriver.exe does not exist!");
 		}
 
 		try {
 			System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 			return new ChromeDriver();
 		} catch (Exception e) {
-			log.error("Could not create Chrome driver.");
+			LOGGER.error("Could not create Chrome driver.");
 			throw new RuntimeException("Could not create Chrome driver.");
 		}
 	}

@@ -13,7 +13,8 @@ import com.geniisys.automation.underwriting.policyissuance.parcreation.blocks.Pa
 public class EnterInvoiceCommissionPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(EnterInvoiceCommissionPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(EnterInvoiceCommissionPage.class.getName());
+	
 	private InvoiceCommissionInformationBlock invoiceCommInfoBlk;
 	private MessageOverlay popupMsg;
 
@@ -42,9 +43,9 @@ public class EnterInvoiceCommissionPage {
 	public void save() {
 		try {
 			driver.findClickableElement(saveBtnLocator).click();
-			log.info("Save button clicked.");
+			LOGGER.info("Save button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		popupMsg.clickOk();
 	}

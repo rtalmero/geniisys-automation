@@ -14,7 +14,7 @@ public class PolicyParCreationPage {
 
 	private BrowserDriver driver;
 
-	private Logger log = LogManager.getLogger(PolicyParCreationPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(PolicyParCreationPage.class.getName());
 
 	private By lineLovLocator = By.xpath("//select[@id='linecd']");
 	private By assuredSearchBtnLocator = By.xpath("//img[@id='btnSearchAssuredName']");
@@ -29,23 +29,23 @@ public class PolicyParCreationPage {
 		try {
 			Select lineLov = new Select(driver.findElement(lineLovLocator));
 			lineLov.selectByValue(lineCode);
-			log.info("Line with code '" + lineCode + "' selected in the combo box.");
+			LOGGER.info("Line with code '" + lineCode + "' selected in the combo box.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	public void setAssured(String assuredNo) {
 		openAssuredLov().searchAndSelect(assuredNo);
-		log.info("Record with Assured No. " + assuredNo + " selected in the table grid.");
+		LOGGER.info("Record with Assured No. " + assuredNo + " selected in the table grid.");
 	}
 
 	public void save() {
 		try {
 			driver.findClickableElement(saveBtnLocator).click();
-			log.info("Save button clicked.");
+			LOGGER.info("Save button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		getMessageOvl().clickOk();
 	}
@@ -53,9 +53,9 @@ public class PolicyParCreationPage {
 	public BasicInformationPage goToBasicInformation() {
 		try {
 			driver.findClickableElement(basicInformationMnuLocator).click();
-			log.info("'Basic Information' menu clicked.");
+			LOGGER.info("'Basic Information' menu clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new BasicInformationPage(driver);
 	}
@@ -63,9 +63,9 @@ public class PolicyParCreationPage {
 	private ModalDialog openAssuredLov() {
 		try {
 			driver.findClickableElement(assuredSearchBtnLocator).click();
-			log.info("Assured search button clicked.");
+			LOGGER.info("Assured search button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new ModalDialog(driver);
 	}

@@ -12,7 +12,7 @@ import com.geniisys.automation.common.ModalDialog;
 public class QuotePerilInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuotePerilInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuotePerilInformationBlock.class.getName());
 
 	private By showPerilTxtLocator = By.xpath("//label[@id='perilInfoAccordionLbl']");
 	private By perilSearchBtnLocator = By.xpath("//img[@id='searchPerilName']");
@@ -30,9 +30,9 @@ public class QuotePerilInformationBlock {
 	public void show() {
 		try {
 			driver.findClickableElement(showPerilTxtLocator).click();
-			log.info("Show Peril Information block.");
+			LOGGER.info("Show Peril Information block.");
 		} catch (TimeoutException e) {
-			log.info(e);
+			LOGGER.info(e);
 		}
 	}
 
@@ -40,7 +40,7 @@ public class QuotePerilInformationBlock {
 		ModalDialog perilLov = openPerilLov();
 
 		if(perilLov.isDisplayed()) {
-			log.info("Peril LOV overlay is displayed.");
+			LOGGER.info("Peril LOV overlay is displayed.");
 			perilLov.searchAndSelect(perilName);
 		}
 	}
@@ -50,9 +50,9 @@ public class QuotePerilInformationBlock {
 			WebElement perilRateFld = driver.findElement(perilRateFldLocator);
 			perilRateFld.click();
 			perilRateFld.sendKeys(rate.toString());
-			log.info("Peril rate field value set to '" + rate + "'.");
+			LOGGER.info("Peril rate field value set to '" + rate + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -61,9 +61,9 @@ public class QuotePerilInformationBlock {
 			WebElement perilTsiFld = driver.findElement(perilTsiFldLocator);
 			perilTsiFld.click();
 			perilTsiFld.sendKeys(tsiAmt.toString());
-			log.info("TSI Amt. field value set to '" + tsiAmt + "'.");
+			LOGGER.info("TSI Amt. field value set to '" + tsiAmt + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -76,18 +76,18 @@ public class QuotePerilInformationBlock {
 	public void addPeril() {
 		try {
 			driver.findClickableElement(addPerilBtnLocator).click();
-			log.info("'Add' button clicked.");
+			LOGGER.info("'Add' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	private ModalDialog openPerilLov() {
 		try {
 			driver.findClickableElement(perilSearchBtnLocator).click();
-			log.info("Peril search button clicked.");
+			LOGGER.info("Peril search button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new ModalDialog(driver);
 	}

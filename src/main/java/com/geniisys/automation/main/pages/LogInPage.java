@@ -12,7 +12,7 @@ import com.geniisys.automation.common.BrowserDriver;
 public class LogInPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(LogInPage.class);
+	private static final Logger LOGGER = LogManager.getLogger(LogInPage.class);
 
 	private By usernameFldLocator = By.xpath("//input[@id='userId']");
 	private By passwordFldLocator = By.xpath("//input[@id='password']");
@@ -28,25 +28,25 @@ public class LogInPage {
 			WebElement usernameFld = driver.findElement(usernameFldLocator);
 			usernameFld.click();
 			usernameFld.sendKeys(username);
-			log.info("Username field value set to '" + username + "'.");
+			LOGGER.info("Username field value set to '" + username + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 
 		try {
 			WebElement passwordFld = driver.findElement(passwordFldLocator);
 			passwordFld.click();
 			passwordFld.sendKeys(password);
-			log.info("Password set.");
+			LOGGER.info("Password set.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 
 		try {
 			driver.findElement(submitBtnLocator).click();
-			log.info("Submit button clicked.");
+			LOGGER.info("Submit button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 
 		return new HomePage(driver);
