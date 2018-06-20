@@ -56,8 +56,6 @@ public final class BrowserDriver implements WebDriver {
 		String geckoDriverPath = driverPath + "geckodriver.exe";
 		if (!new File(geckoDriverPath).exists()) {
 			log.error("Driver file geckodriver.exe does not exist!");
-			throw new RuntimeException
-			("Driver file geckodriver.exe does not exist!");
 		}
 		try {
 			System.setProperty("webdriver.gecko.driver", geckoDriverPath);
@@ -71,8 +69,7 @@ public final class BrowserDriver implements WebDriver {
 	private WebDriver chromeDriver() {
 		String chromeDriverPath = driverPath + "chromedriver.exe";
 		if (!new File(chromeDriverPath).exists()) {
-			throw new RuntimeException
-			("Driver file chromedriver.exe does not exist!");
+			log.error("Driver file chromedriver.exe does not exist!");
 		}
 
 		try {
