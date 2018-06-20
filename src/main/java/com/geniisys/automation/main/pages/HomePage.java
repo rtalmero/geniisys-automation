@@ -12,7 +12,7 @@ import com.geniisys.automation.underwriting.main.pages.UnderwritingPage;
 public class HomePage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(HomePage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(HomePage.class.getName());
 
 	private By underwritingBtnLocator = By.xpath("//div[@id='iconUnderwriting']");
 	private By marketingBtnLocator = By.xpath("//div[@id='iconMarketing']");
@@ -24,9 +24,9 @@ public class HomePage {
 	public UnderwritingPage goToUnderwritingPage() {
 		try {
 			driver.findClickableElement(underwritingBtnLocator).click();
-			log.info("Go to Underwriting main page.");
+			LOGGER.info("Go to Underwriting main page.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new UnderwritingPage(driver);
 	}
@@ -34,9 +34,9 @@ public class HomePage {
 	public MarketingHomePage goToMarketingPage() {
 		try {
 			driver.findClickableElement(marketingBtnLocator).click();
-			log.info("Go to Marketing main page");
+			LOGGER.info("Go to Marketing main page");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new MarketingHomePage(driver);
 	}

@@ -11,7 +11,7 @@ import com.geniisys.automation.underwriting.policyissuance.parcreation.blocks.Pa
 public class EnterBillPremiumsPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(EnterBillPremiumsPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(EnterBillPremiumsPage.class.getName());
 
 	private By saveBtnLocator = By.xpath("//input[@id='btnSave']");
 
@@ -23,9 +23,9 @@ public class EnterBillPremiumsPage {
 		getMessageOvl().waitToFinishLoading();
 		try {
 			driver.findClickableElement(saveBtnLocator).click();
-			log.info("Save button clicked.");
+			LOGGER.info("Save button clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		getMessageOvl().clickOk();
 	}

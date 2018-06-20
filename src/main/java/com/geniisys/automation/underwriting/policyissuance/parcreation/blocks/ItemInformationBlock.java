@@ -12,7 +12,7 @@ import com.geniisys.automation.common.MessageOverlay;
 public class ItemInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(ItemInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(ItemInformationBlock.class.getName());
 
 	private final By itemTitleFldLocator = By.xpath("//input[@id='itemTitle']");
 	private final By addItemBtnLocator = By.xpath("//input[@id='btnAddItem']");
@@ -26,18 +26,18 @@ public class ItemInformationBlock {
 		try {
 			driver.findClickableElement(itemTitleFldLocator).click();
 			driver.findElement(itemTitleFldLocator).sendKeys(itemTitle);
-			log.info("Item Title field value set to '" + itemTitle + "'.");
+			LOGGER.info("Item Title field value set to '" + itemTitle + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	public void addItem() {
 		try {
 			driver.findClickableElement(addItemBtnLocator).click();
-			log.info("'Add' button clicked.");
+			LOGGER.info("'Add' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		getMessageOvl().clickOk();
 	}
@@ -49,9 +49,9 @@ public class ItemInformationBlock {
 							+ " and contains(text(), '"
 							+ itemNo
 							+ "')]")).click();
-			log.info("Item Number " + itemNo + " selected in the table grid.");
+			LOGGER.info("Item Number " + itemNo + " selected in the table grid.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -60,9 +60,9 @@ public class ItemInformationBlock {
 			driver.findElement(regionFldLocator).click();
 			Select region = new Select(driver.findElement(regionFldLocator));
 			region.selectByVisibleText(regionName);
-			log.info("Region with name '" + regionName + "' selected in the combo box.");
+			LOGGER.info("Region with name '" + regionName + "' selected in the combo box.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 

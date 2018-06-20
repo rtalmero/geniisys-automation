@@ -13,7 +13,7 @@ import com.geniisys.automation.marketing.createquote.blocks.QuotationPeriodOfIns
 public class CreateQuotationPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(CreateQuotationPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(CreateQuotationPage.class.getName());
 
 
 	private final By saveButton = By.xpath("//input[@id='btnSave']");
@@ -33,12 +33,12 @@ public class CreateQuotationPage {
 	public void save() {
 		try {
 			driver.findClickableElement(saveButton).click();
-			log.info("'Save' button clicked.");
+			LOGGER.info("'Save' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		if (getMessageOverlay().getMessageType().contains("SUCCESS")) {
-			log.info("Message prompt displayed.");
+			LOGGER.info("Message prompt displayed.");
 			getMessageOverlay().clickOk();
 		}
 	}

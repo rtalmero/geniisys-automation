@@ -12,7 +12,7 @@ import ru.yandex.qatools.htmlelements.element.Select;
 public class BasicInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(BasicInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(BasicInformationBlock.class.getName());
 
 	private By sublineLovLocator = By.xpath("//select[@id='sublineCd']");
 	private By referencePolicyNoFldLocator = By.xpath("//input[@id='referencePolicyNo']");
@@ -27,9 +27,9 @@ public class BasicInformationBlock {
 			Select sublineLov = new Select(driver.findElement(sublineLovLocator));
 			sublineLov.click();
 			sublineLov.selectByValue(sublineCode);
-			log.info("Subline with code '" + sublineCode + "' selected in the combo box.");
+			LOGGER.info("Subline with code '" + sublineCode + "' selected in the combo box.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -37,9 +37,9 @@ public class BasicInformationBlock {
 		try {
 			driver.findClickableElement(referencePolicyNoFldLocator).click();
 			driver.findElement(referencePolicyNoFldLocator).sendKeys(refPolNo);
-			log.info("Reference Policy No. field value set to '" + refPolNo + "'.");
+			LOGGER.info("Reference Policy No. field value set to '" + refPolNo + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 

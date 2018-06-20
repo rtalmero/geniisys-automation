@@ -11,7 +11,7 @@ import com.geniisys.automation.common.ModalDialog;
 public class PerilInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(PerilInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(PerilInformationBlock.class.getName());
 
 	private By showPerilBlockTxtLocator = By.xpath("//label[@id='showPeril']");
 	private By perilSearchBtnLocator = By.xpath("//img[@id='hrefPeril']");
@@ -40,18 +40,18 @@ public class PerilInformationBlock {
 	public void showPerilBlock() {
 		try {
 			driver.findClickableElement(showPerilBlockTxtLocator).click();
-			log.info("Peril block shown.");
+			LOGGER.info("Peril block shown.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	public ModalDialog openPerilLov() {
 		try {
 			driver.findClickableElement(perilSearchBtnLocator).click();
-			log.info("Peril search button clicked.");
+			LOGGER.info("Peril search button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new ModalDialog(driver);
 	}
@@ -60,9 +60,9 @@ public class PerilInformationBlock {
 		try {
 			driver.findElement(perilRateFldLocator).click();
 			driver.findElement(perilRateFldLocator).sendKeys(perilRate.toString());
-			log.info("Peril Rate field value set to '" + perilRate + "'.");
+			LOGGER.info("Peril Rate field value set to '" + perilRate + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -70,9 +70,9 @@ public class PerilInformationBlock {
 		try {
 			driver.findClickableElement(perilTsiFldLocator).click();
 			driver.findClickableElement(perilTsiFldLocator).sendKeys(perilTsiAmt.toString());
-			log.info("TSI Amt. field value set to '" + perilTsiAmt + "'.");
+			LOGGER.info("TSI Amt. field value set to '" + perilTsiAmt + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 
 		driver.findClickableElement(perilPremiumFldLocator).click();
@@ -82,9 +82,9 @@ public class PerilInformationBlock {
 		try {
 			driver.findClickableElement(perilPremiumFldLocator).click();
 			driver.findClickableElement(perilPremiumFldLocator).sendKeys(perilPremAmt.toString());
-			log.info("Premium Amt. field value set to '" + perilPremAmt + "'.");
+			LOGGER.info("Premium Amt. field value set to '" + perilPremAmt + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -95,9 +95,9 @@ public class PerilInformationBlock {
 	public void add() {
 		try {
 			driver.findClickableElement(addPerilBtnLocator).click();
-			log.info("'Add' button clicked.");
+			LOGGER.info("'Add' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 

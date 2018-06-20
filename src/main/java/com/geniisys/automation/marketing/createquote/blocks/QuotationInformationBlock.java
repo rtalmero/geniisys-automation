@@ -13,7 +13,7 @@ import com.geniisys.automation.common.ModalDialog;
 public class QuotationInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuotationInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuotationInformationBlock.class.getName());
 
 
 	private By sublineLovLocator = By.xpath("//select[@id='subline']");
@@ -36,9 +36,9 @@ public class QuotationInformationBlock {
 		try {
 			Select subline = new Select(driver.findElement(sublineLovLocator));
 			subline.selectByValue(sublineCode);
-			log.info("Subline field value set to '" + sublineCode + "'.");
+			LOGGER.info("Subline field value set to '" + sublineCode + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -46,37 +46,37 @@ public class QuotationInformationBlock {
 		try {
 			Select credBranchLov = new Select(driver.findElement(creditingBranchLovLocator));
 			credBranchLov.selectByValue(branchName);
-			log.info("Crediting Branch field value set to '" + branchName + "'.");
+			LOGGER.info("Crediting Branch field value set to '" + branchName + "'.");
 		} catch (TimeoutException e) {
-			log.info(e);
+			LOGGER.info(e);
 		}
 	}
 
 	public void setAssured(String assuredNo) {
 		try {
 			driver.findClickableElement(searchAssuredBtnLocator).click();
-			log.info("Assured search button clicked.");
+			LOGGER.info("Assured search button clicked.");
 		} catch (TimeoutException e) {
-			log.info(e);
+			LOGGER.info(e);
 		}
 		getModalDialog().searchAndSelect(assuredNo);
 
 		if (isMultipleAssured()) {
-			log.info("Multiple Assured prompt displayed.");
+			LOGGER.info("Multiple Assured prompt displayed.");
 			try {
 				driver.findClickableElement(displayListBtnLocator).click();
-				log.info("'Display List' button clicked.");
+				LOGGER.info("'Display List' button clicked.");
 			} catch (TimeoutException e) {
-				log.error(e);
+				LOGGER.error(e);
 			}
 			try {
 				driver.findClickableElement(returnBtnLocator).click();
-				log.info("'Return' button clicked.");
+				LOGGER.info("'Return' button clicked.");
 			} catch (TimeoutException e) {
-				log.error(e);
+				LOGGER.error(e);
 			}
 		}
-		log.info("Prompt closed.");
+		LOGGER.info("Prompt closed.");
 	}
 
 	private boolean isMultipleAssured() {
@@ -84,7 +84,7 @@ public class QuotationInformationBlock {
 			driver.findHiddenElement(msgBox);
 			return true;
 		} catch (NoSuchElementException e) {
-			log.error(e);
+			LOGGER.error(e);
 			return false;
 		}
 	}

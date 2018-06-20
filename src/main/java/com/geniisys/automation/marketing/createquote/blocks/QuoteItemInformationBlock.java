@@ -11,7 +11,7 @@ import com.geniisys.automation.common.BrowserDriver;
 public class QuoteItemInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuoteItemInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuoteItemInformationBlock.class.getName());
 
 	private final By itemNoField = By.xpath("//input[@id='txtItemNo']");
 	private final By itemTitleField = By.xpath("//input[@id='txtItemTitle']");
@@ -40,29 +40,29 @@ public class QuoteItemInformationBlock {
 		WebElement itemNumber = driver.findClickableElement(itemNoField);
 		try {
 			itemNumber.clear();
-			log.info("Item No. field cleared.");
+			LOGGER.info("Item No. field cleared.");
 			itemNumber.sendKeys(Integer.toString(itemNo));
-			log.info("Item No. field value set to " + itemNo + ".");
+			LOGGER.info("Item No. field value set to " + itemNo + ".");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	public void setItemTitle(String itemTitle) {
 		try {
 			driver.findElement(itemTitleField).sendKeys(itemTitle);
-			log.info("Item Title field value set to '" + itemTitle + "'.");
+			LOGGER.info("Item Title field value set to '" + itemTitle + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	public void setItemDescription1(String itemDesc1) {
 		try {
 			driver.findElement(itemDescField1).sendKeys(itemDesc1);
-			log.info("Item Description (1) field value set to '" + itemDesc1 + "'.");
+			LOGGER.info("Item Description (1) field value set to '" + itemDesc1 + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -73,9 +73,9 @@ public class QuoteItemInformationBlock {
 	public void clickAdd() {
 		try {
 			driver.findClickableElement(addButton).click();
-			log.info("'Add' button clicked.");
+			LOGGER.info("'Add' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -86,9 +86,9 @@ public class QuoteItemInformationBlock {
 							+ " and contains(text(), '"
 							+ Integer.valueOf(itemNo)
 							+ "')]")).click();
-			log.info("Item number " + itemNo + " selected in the table grid.");
+			LOGGER.info("Item number " + itemNo + " selected in the table grid.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 }

@@ -14,7 +14,7 @@ import com.geniisys.automation.underwriting.policyissuance.parcreation.blocks.Pe
 public class ItemInformationPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(ItemInformationPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(ItemInformationPage.class.getName());
 
 	private By saveButtonLocator = By.xpath("//input[@id='btnSave']");
 
@@ -33,9 +33,9 @@ public class ItemInformationPage {
 	public void save() {
 		try {
 			driver.findClickableElement(saveButtonLocator).click();
-			log.info("Save button clicked.");
+			LOGGER.info("Save button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		getMessageOvl().clickOk();
 	}

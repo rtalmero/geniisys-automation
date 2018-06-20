@@ -13,7 +13,7 @@ import com.geniisys.automation.common.ModalDialog;
 public class InvoiceCommissionInformationBlock {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(InvoiceCommissionInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(InvoiceCommissionInformationBlock.class.getName());
 
 	private By intermediarySearchBtnLocator = By.xpath("//img[@id='oscmIntm']");
 	private By sharePercentageFldLocator = By.xpath("//input[@id='txtSharePercentage']");
@@ -27,9 +27,9 @@ public class InvoiceCommissionInformationBlock {
 		try {
 			driver.findClickableElement(sharePercentageFldLocator).click();
 			driver.findElement(sharePercentageFldLocator).sendKeys(sharePercentage.toString());
-			log.info("Share Percentage field value set to '" + sharePercentage + "'.");
+			LOGGER.info("Share Percentage field value set to '" + sharePercentage + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -40,18 +40,18 @@ public class InvoiceCommissionInformationBlock {
 	public void clickAdd() {
 		try {
 			driver.findClickableElement(addIntermediaryBtnLocator).click();
-			log.info("Add button clicked.");
+			LOGGER.info("Add button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
 	private ModalDialog openIntermediaryLov() {
 		try {
 			driver.findClickableElement(intermediarySearchBtnLocator).click();
-			log.info("Intermediary search button clicked.");
+			LOGGER.info("Intermediary search button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new ModalDialog(driver);
 	}

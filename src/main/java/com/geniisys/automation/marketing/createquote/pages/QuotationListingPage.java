@@ -10,7 +10,7 @@ import com.geniisys.automation.common.BrowserDriver;
 public class QuotationListingPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuotationListingPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuotationListingPage.class.getName());
 
 
 	private final By addButton = By.xpath("//span[@id='mtgAddBtn1']");
@@ -22,9 +22,9 @@ public class QuotationListingPage {
 	public CreateQuotationPage addNewRecord() {
 		try {
 			driver.findClickableElement(addButton).click();
-			log.info("'Add' button clicked.");
+			LOGGER.info("'Add' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new CreateQuotationPage(driver);
 	}
