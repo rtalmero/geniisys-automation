@@ -15,11 +15,11 @@ public abstract class BaseTest {
 
 	@BeforeTest
 	public void setUp() {
-		driver = new BrowserDriver("FIREFOX");
-		driver.manage().window().maximize();
-		driver.get(URL);
+		setDriver(new BrowserDriver("FIREFOX"));
+		getDriver().manage().window().maximize();
+		getDriver().get(URL);
 
-		LogInPage loginPage = new LogInPage(driver);
+		LogInPage loginPage = new LogInPage(getDriver());
 		loginPage.logInAs(USERNAME, PASSWORD);
 	}
 
@@ -28,4 +28,13 @@ public abstract class BaseTest {
 		//		driver.close();
 		System.out.println("TEST DONE!");
 	}
+
+	public BrowserDriver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(BrowserDriver driver) {
+		this.driver = driver;
+	}
+	
 }
