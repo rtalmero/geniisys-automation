@@ -188,7 +188,7 @@ public final class BrowserDriver implements WebDriver {
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
 		Date date = new Date();
-		String sysdate = dateFormat.format(date); //2016/11/16 12:08:43
+		String sysdate = dateFormat.format(date);
 		
 		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		
