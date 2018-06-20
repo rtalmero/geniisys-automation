@@ -16,10 +16,10 @@ public abstract class BaseTest {
 	@BeforeTest
 	public void setUp() {
 		setDriver(new BrowserDriver("FIREFOX"));
-		getDriver().manage().window().maximize();
-		getDriver().get(URL);
+		driver.manage().window().maximize();
+		driver.get(URL);
 
-		LogInPage loginPage = new LogInPage(getDriver());
+		LogInPage loginPage = new LogInPage(driver);
 		loginPage.logInAs(USERNAME, PASSWORD);
 	}
 
