@@ -15,7 +15,7 @@ public abstract class BaseTest {
 
 	@BeforeTest
 	public void setUp() {
-		driver = new BrowserDriver("FIREFOX");
+		setDriver(new BrowserDriver("FIREFOX"));
 		driver.manage().window().maximize();
 		driver.get(URL);
 
@@ -29,4 +29,13 @@ public abstract class BaseTest {
 			driver.quit();
 		}
 	}
+
+	public BrowserDriver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(BrowserDriver driver) {
+		this.driver = driver;
+	}
+	
 }

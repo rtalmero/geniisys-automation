@@ -42,7 +42,7 @@ public class ModalDialog {
 			try {
 				driver.findElement(By.xpath("//div[starts-with(@class,'mtgInnerCell') "
 						+ "and contains(text(),"
-						+ " '" + keyword + "')]")).click();
+						+ " \"" + keyword + "\")]")).click();
 				LOGGER.info("Record that contains text '" + keyword + "' clicked.");
 			} catch (TimeoutException e) {
 				LOGGER.error(e);
