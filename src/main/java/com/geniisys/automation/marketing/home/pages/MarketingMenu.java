@@ -11,7 +11,7 @@ import com.geniisys.automation.marketing.createquote.blocks.QuotationProcessingS
 public class MarketingMenu {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(MarketingMenu.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(MarketingMenu.class.getName());
 
 	private By quotationProcessingMnuLocator = By.xpath("//a[@id='quotationProcessing']");
 
@@ -24,9 +24,9 @@ public class MarketingMenu {
 	public QuotationProcessingSubmenu goToQuotationProcessing() {
 		try {
 			driver.findClickableElement(quotationProcessingMnuLocator).click();
-			log.info("'Quotation Processing' menu clicked.");
+			LOGGER.info("'Quotation Processing' menu clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new QuotationProcessingSubmenu(driver);
 	}
@@ -34,9 +34,9 @@ public class MarketingMenu {
 	public void goToInquiry() {
 		try {
 			driver.findClickableElement(inquiryMnuLocator).click();
-			log.info("'Inquiry' menu clicked.");
+			LOGGER.info("'Inquiry' menu clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 

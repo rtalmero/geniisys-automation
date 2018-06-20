@@ -10,7 +10,7 @@ import com.geniisys.automation.common.DatePicker;
 
 public class PeriodOfInsuranceBlock {
 
-	private Logger log = LogManager.getLogger(PeriodOfInsuranceBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(PeriodOfInsuranceBlock.class.getName());
 
 	private DatePicker datePicker;
 	private By inceptDatePkrLocator = By.xpath("//img[@id='hrefDoiDate']");
@@ -28,9 +28,9 @@ public class PeriodOfInsuranceBlock {
 	public void setInceptionDate(String date) {
 		try {
 			datePicker.setDate(inceptDatePkrLocator, date);
-			log.info("Inception Date set to '" + date + "'.");
+			LOGGER.info("Inception Date set to '" + date + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 
@@ -42,9 +42,9 @@ public class PeriodOfInsuranceBlock {
 	public void setExpiryDate(String date) {
 		try {
 			datePicker.setDate(expiryDatePkrLocator, date);
-			log.info("Expiry Date set to '" + date + "'.");
+			LOGGER.info("Expiry Date set to '" + date + "'.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 	}
 }

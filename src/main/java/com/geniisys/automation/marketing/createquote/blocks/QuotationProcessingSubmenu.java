@@ -10,7 +10,7 @@ import com.geniisys.automation.marketing.createquote.pages.QuoteLineListingPage;
 public class QuotationProcessingSubmenu {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuotationProcessingSubmenu.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuotationProcessingSubmenu.class.getName());
 
 	private final By LINE_LISTING_SUBMENU = By.xpath("//*[@id='lineListing']");
 
@@ -21,9 +21,9 @@ public class QuotationProcessingSubmenu {
 	public QuoteLineListingPage goToQuoatationListing() {
 		try {
 			driver.findClickableElement(LINE_LISTING_SUBMENU).click();
-			log.info("'Quotation Listing' submenu clicked.");
+			LOGGER.info("'Quotation Listing' submenu clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new QuoteLineListingPage(driver);
 	}

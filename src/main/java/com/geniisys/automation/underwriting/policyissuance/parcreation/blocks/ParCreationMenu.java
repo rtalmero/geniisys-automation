@@ -10,7 +10,7 @@ import com.geniisys.automation.underwriting.policyissuance.parcreation.pages.Ite
 public class ParCreationMenu {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(ParCreationMenu.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(ParCreationMenu.class.getName());
 
 	private By itemInfoMnuLocator = By.xpath("//a[@id='itemInfo']");
 	private By billMnuLocator = By.xpath("//a[@id='bill']");
@@ -24,9 +24,9 @@ public class ParCreationMenu {
 	public ItemInformationPage goToItemInformation() {
 		try {
 			driver.findClickableElement(itemInfoMnuLocator).click();
-			log.info("'Item Information' menu clicked.");
+			LOGGER.info("'Item Information' menu clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new ItemInformationPage(driver);
 	}
@@ -34,9 +34,9 @@ public class ParCreationMenu {
 	public BillSubmenu showBillSubmenu() {
 		try {
 			driver.findClickableElement(billMnuLocator).click();
-			log.info("'Bill' menu clicked.");
+			LOGGER.info("'Bill' menu clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new BillSubmenu(driver);
 	}
@@ -44,9 +44,9 @@ public class ParCreationMenu {
 	public DistributionSubmenu showDistributionSubmenu() {
 		try {
 			driver.findClickableElement(distributionMnuLocator).click();
-			log.info("'Distribution' menu clicked.");
+			LOGGER.info("'Distribution' menu clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new DistributionSubmenu(driver);
 	}
@@ -54,9 +54,9 @@ public class ParCreationMenu {
 	public PostParOverlay goToPost() {
 		try {
 			driver.findClickableElement(postMnuLocator).click();
-			log.info("'Post' menu clicked.");
+			LOGGER.info("'Post' menu clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		return new PostParOverlay(driver);
 	}

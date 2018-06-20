@@ -9,7 +9,7 @@ import com.geniisys.automation.common.BrowserDriver;
 public class QuoteLineListingPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuoteLineListingPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuoteLineListingPage.class.getName());
 
 
 	private By createQuotationButton = By.xpath("//input[@id='btnCreateQuotationFromQuotationList']");
@@ -27,15 +27,15 @@ public class QuoteLineListingPage {
 	public QuotationListingPage selectLine(String lineCode) {
 		try {
 			driver.findClickableElement(lineLocator(lineCode)).click();
-			log.info(lineCode + " line selected.");
+			LOGGER.info(lineCode + " line selected.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		try {
 			driver.findClickableElement(createQuotationButton).click();
-			log.info("'Create Quotation' button clicked.");
+			LOGGER.info("'Create Quotation' button clicked.");
 		} catch (Exception e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 
 		return new QuotationListingPage(driver);

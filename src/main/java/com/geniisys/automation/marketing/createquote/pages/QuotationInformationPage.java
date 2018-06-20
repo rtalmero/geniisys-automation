@@ -13,7 +13,7 @@ import com.geniisys.automation.marketing.createquote.blocks.QuotePerilInformatio
 public class QuotationInformationPage {
 
 	private BrowserDriver driver;
-	private Logger log = LogManager.getLogger(QuotationInformationPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(QuotationInformationPage.class.getName());
 
 	private By saveBtnLocator = By.xpath("//input[@id='btnSaveQuotation']");
 
@@ -24,9 +24,9 @@ public class QuotationInformationPage {
 	public void save() {
 		try {
 			driver.findClickableElement(saveBtnLocator).click();
-			log.info("'Save' button clicked.");
+			LOGGER.info("'Save' button clicked.");
 		} catch (TimeoutException e) {
-			log.error(e);
+			LOGGER.error(e);
 		}
 		getMsgOverlay().clickOk();
 	}
