@@ -6,22 +6,24 @@
 
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%-5level] %logger{36} - %msg%n" />
 		</Console>
 
-		<RollingFile name="RollingFile" fileName="${logpath}/Selenium.logs" filePattern="${logpath}/Selenium_differentDAte.logs">
+		<RollingFile name="RollingFile"
+			fileName="${logpath}/SELENIUM.log"
+			filePattern="${logpath}/SELENIUM_%d{yyyyMMdd}.log.gz">
 			<Policies>
 				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="20 MB" />
+				<TimeBasedTriggeringPolicy />
 			</Policies>
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%-5level] %logger{36} - %msg%n" />
 		</RollingFile>
 	</Appenders>
 
 	<Loggers>
-
-		<Logger name="com.geniisys.automation.ParCreationTest" level="error" additivity="false">
-				<AppenderRef ref="Console" />
-		</Logger>
 
 		<Root level="trace">
 			<AppenderRef ref="RollingFile" />
