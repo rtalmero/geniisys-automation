@@ -8,7 +8,7 @@
     <classes>
       <!-- <class name="com.geniisys.automation.TestNG2"/>
       <class name="com.geniisys.automation.TestNG3"/> -->
-      <class name="com.geniisys.automation.MarketingTest"/>
+      <class name="com.geniisys.automation.CreateQuotationTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

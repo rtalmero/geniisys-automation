@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import com.geniisys.automation.common.BrowserDriver;
 
@@ -17,6 +18,7 @@ public class QuoteItemInformationBlock {
 	private final By itemTitleField = By.xpath("//input[@id='txtItemTitle']");
 	private final By itemDescField1 = By.xpath("//textarea[@id='txtItemDesc']");
 	private final By itemDescField2 = By.xpath("//textarea[@id='txtItemDesc2']");
+	private final By coverageLOV = By.xpath("//select[@id='selCoverage']");
 	/*	private final By currencyLov = By.xpath("//select[@id='selCurrency']");
 	private final By rateField = By.xpath("//input[@id='txtCurrencyRate']");
 	private final By coverageLov = By.xpath("//select[@id='selCoverage']");*/
@@ -82,11 +84,21 @@ public class QuoteItemInformationBlock {
 	public void selectItem(int itemNo) {
 		try {
 			driver.findClickableElement(
-					By.xpath("//div[starts-with(@id,'mtgIC2')"
+					By.xpath("//div[starts-with(@id,'mtgIC2_2,')"
 							+ " and contains(text(), '"
 							+ Integer.valueOf(itemNo)
 							+ "')]")).click();
 			LOGGER.info("Item number " + itemNo + " selected in the table grid.");
+		} catch (TimeoutException e) {
+			LOGGER.error(e);
+		}
+	}
+	
+	public void setCoverage(String coveragesCd) {
+		try {
+			Select coverage = new Select(driver.findElement(coverageLOV));
+			coverage.selectByValue(coveragesCd);
+			LOGGER.info("Coverage field value set to '" + coveragesCd + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 		}

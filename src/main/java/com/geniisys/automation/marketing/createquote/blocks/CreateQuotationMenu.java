@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import com.geniisys.automation.common.BrowserDriver;
+import com.geniisys.automation.marketing.createquote.pages.BondPolicyDataPage;
 import com.geniisys.automation.marketing.createquote.pages.QuotationInformationPage;
 
 public class CreateQuotationMenu {
@@ -15,6 +16,7 @@ public class CreateQuotationMenu {
 
 
 	private final By quotationInformation = By.xpath("//a[@id='quoteInformation']");
+	private final By bondPolicyData = By.xpath("//a[@id='bondPolicyData']");
 
 	public CreateQuotationMenu(BrowserDriver driver) {
 		this.driver = driver;
@@ -28,6 +30,16 @@ public class CreateQuotationMenu {
 			LOGGER.error(e);
 		}
 		return new QuotationInformationPage(driver);
+	}
+	
+	public BondPolicyDataPage goToBondPolicyDataPage() {
+		try {
+			driver.findClickableElement(bondPolicyData).click();
+			LOGGER.info("'Bond Policy Data' menu clicked.");
+		} catch (TimeoutException e) {
+			LOGGER.error(e);
+		}
+		return new BondPolicyDataPage(driver);
 	}
 
 }

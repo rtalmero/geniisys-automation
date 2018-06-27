@@ -7,6 +7,7 @@ import org.openqa.selenium.TimeoutException;
 
 import com.geniisys.automation.common.BrowserDriver;
 import com.geniisys.automation.common.MessageOverlay;
+import com.geniisys.automation.marketing.createquote.blocks.QuotationAdditionalInformationBlock;
 import com.geniisys.automation.marketing.createquote.blocks.QuoteItemInformationBlock;
 import com.geniisys.automation.marketing.createquote.blocks.QuotePerilInformationBlock;
 
@@ -43,4 +44,8 @@ public class QuotationInformationPage {
 		return new MessageOverlay(driver);
 	}
 
+	public QuotationAdditionalInformationBlock getAddInfoBlk() {
+		return new QuotationAdditionalInformationBlock(driver);
+	}
+	
 }
