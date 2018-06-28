@@ -12,7 +12,7 @@ import com.geniisys.automation.marketing.createquote.blocks.BondBasicInformation
 public class BondPolicyDataPage {
 
 	private BrowserDriver driver;
-	private static final Logger LOGGER = LogManager.getLogger(QuotationInformationPage.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(BondPolicyDataPage.class.getName());
 	
 	private final By saveButton = By.xpath("//input[@id='btnSave']");
 	

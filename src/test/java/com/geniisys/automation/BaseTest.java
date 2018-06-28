@@ -9,7 +9,8 @@ import com.geniisys.automation.main.pages.LogInPage;
 public abstract class BaseTest {
 
 	protected BrowserDriver driver;
-	private final String URL = "http://192.10.10.240:9090/Geniisys/";
+//	private final String URL = "http://192.10.10.240:9090/Geniisys/";
+	private final String URL = "http://192.10.10.216:8080/Geniisys/";
 	private final String USERNAME = "CPI";
 	private final String PASSWORD = "CPI12345!";
 

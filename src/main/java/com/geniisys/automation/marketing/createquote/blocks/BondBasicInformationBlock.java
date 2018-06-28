@@ -11,12 +11,12 @@ import com.geniisys.automation.common.BrowserDriver;
 public class BondBasicInformationBlock {
 
 	private BrowserDriver driver;
-	private static final Logger LOGGER = LogManager.getLogger(QuoteItemInformationBlock.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(BondBasicInformationBlock.class.getName());
 	
 	private final By obligeeLOVLocator = By.xpath("//select[@id='obligee']");
 	private final By prinSignorLOVLocator = By.xpath("//select[@id='dspPrinSignor']");
-	private final By bondUndertakingField = By.xpath("//textarea[@id='bondDtl']");
-	private final By indemnityField = By.xpath("//textarea[@id='indemnityText']");
+	private final By bondUndertakingFldLocator = By.xpath("//textarea[@id='bondDtl']");
+	private final By indemnityFldLocator = By.xpath("//textarea[@id='indemnityText']");
 	private final By notaryLOVLocator = By.xpath("//select[@id='dspNPName']");
 	
 	public BondBasicInformationBlock(BrowserDriver driver) {
@@ -45,7 +45,7 @@ public class BondBasicInformationBlock {
 	
 	public void setBondUndertaking(String bondUndertakingTxt) {
 		try {
-			driver.findElement(bondUndertakingField).sendKeys(bondUndertakingTxt);
+			driver.findElement(bondUndertakingFldLocator).sendKeys(bondUndertakingTxt);
 			LOGGER.info("Bond Undertaking field value set to '" + bondUndertakingTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -54,7 +54,7 @@ public class BondBasicInformationBlock {
 	
 	public void setIndemnity(String indemnityTxt) {
 		try {
-			driver.findElement(indemnityField).sendKeys(indemnityTxt);
+			driver.findElement(indemnityFldLocator).sendKeys(indemnityTxt);
 			LOGGER.info("Indemnity field value set to '" + indemnityTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);

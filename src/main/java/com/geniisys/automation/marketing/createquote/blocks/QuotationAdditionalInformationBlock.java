@@ -13,11 +13,12 @@ public class QuotationAdditionalInformationBlock {
 
 	private BrowserDriver driver;
 	private DatePicker datePicker;
-	private static final Logger LOGGER = LogManager.getLogger(QuoteItemInformationBlock.class.getName());
+	private ModalDialog modalDialog;
+	private static final Logger LOGGER = LogManager.getLogger(QuotationAdditionalInformationBlock.class.getName());
 	
 	
 	private final By showAddInfoTxtLocator = By.xpath("//label[@id='additionalInfoAccordionLbl']");
-	private final By assigneeField = By.xpath("//input[@id='txtAssignee']");
+	private final By assigneeFldLocator = By.xpath("//input[@id='txtAssignee']");
 	private final By typeSearchBtnLocator = By.xpath("//img[@id='hrefFrItemType']");
 	private final By provinceSearchBtnLocator = By.xpath("//img[@id='hrefProvince']");
 	private final By citySearchBtnLocator = By.xpath("//img[@id='hrefCity']");
@@ -28,24 +29,25 @@ public class QuotationAdditionalInformationBlock {
 	private final By tariffZoneSearchBtnLocator = By.xpath("//img[@id='hrefTariffZone']");
 	private final By tariffCodeSearchBtnLocator = By.xpath("//img[@id='hrefTarfCd']");
 	private final By constructionSearchBtnLocator = By.xpath("//img[@id='hrefConstructionCd']");
-	private final By constructionRemarksField = By.xpath("//textarea[@id='txtConstructionRemarks']");
-	private final By occupancyRemarksField = By.xpath("//textarea[@id='txtOccupancyRemarks']");
+	private final By constructionRemarksTxtLocator = By.xpath("//textarea[@id='txtConstructionRemarks']");
+	private final By occupancyRemarksTxtLocator = By.xpath("//textarea[@id='txtOccupancyRemarks']");
 	private final By fromDateDprLocator = By.xpath("//img[@id='hrefFromDate']");
 	private final By toDateDprLocator = By.xpath("//img[@id='hrefToDate']");
-	private final By locationField1 = By.xpath("//input[@id='txtLocRisk1']");
-	private final By locationField2 = By.xpath("//input[@id='txtLocRisk2']");
-	private final By locationField3 = By.xpath("//input[@id='txtLocRisk3']");
-	private final By latitudeField = By.xpath("//input[@id='txtLatitude']");
-	private final By longitudeField = By.xpath("//input[@id='txtLongitude']");
-	private final By frontField = By.xpath("//textarea[@id='txtFront']");
-	private final By rightField = By.xpath("//textarea[@id='txtRight']");
-	private final By leftField = By.xpath("//textarea[@id='txtLeft']");
-	private final By rearField = By.xpath("//textarea[@id='txtRear']");
-	private final By applyChangesButton = By.xpath("//input[@id='aiUpdateBtn']");
+	private final By location1FldLocator = By.xpath("//input[@id='txtLocRisk1']");
+	private final By location2FldLocator = By.xpath("//input[@id='txtLocRisk2']");
+	private final By location3FldLocator = By.xpath("//input[@id='txtLocRisk3']");
+	private final By latitudeFldLocator = By.xpath("//input[@id='txtLatitude']");
+	private final By longitudeFldLocator = By.xpath("//input[@id='txtLongitude']");
+	private final By frontTxtLocator = By.xpath("//textarea[@id='txtFront']");
+	private final By rightfrontTxtLocator = By.xpath("//textarea[@id='txtRight']");
+	private final By leftfrontTxtLocator = By.xpath("//textarea[@id='txtLeft']");
+	private final By rearfrontTxtLocator = By.xpath("//textarea[@id='txtRear']");
+	private final By applyChangesBtnLocator = By.xpath("//input[@id='aiUpdateBtn']");
 	
 	public QuotationAdditionalInformationBlock(BrowserDriver driver) {
 		this.driver = driver;
 		datePicker = new DatePicker(driver);
+		modalDialog = new ModalDialog(driver);
 	}
 	
 	public void show() {
@@ -59,7 +61,7 @@ public class QuotationAdditionalInformationBlock {
 	
 	public void setAssignee(String assigneeTxt) {
 		try {
-			driver.findElement(assigneeField).sendKeys(assigneeTxt);
+			driver.findElement(assigneeFldLocator).sendKeys(assigneeTxt);
 			LOGGER.info("Assignee field value set to '" + assigneeTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -67,98 +69,98 @@ public class QuotationAdditionalInformationBlock {
 	}
 	
 	public void setType(String typeCd) {
-		ModalDialog typelLov = openLov(typeSearchBtnLocator);
+		modalDialog.openLov(typeSearchBtnLocator);
 
-		if(typelLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Type LOV overlay is displayed.");
-			typelLov.searchAndSelect(typeCd);
+			modalDialog.searchAndSelect(typeCd);
 		}
 	}
 	
 	public void setProvince(String provinceCd) {
-		ModalDialog provinceLov = openLov(provinceSearchBtnLocator);
+		modalDialog.openLov(provinceSearchBtnLocator);
 
-		if(provinceLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Province LOV overlay is displayed.");
-			provinceLov.searchAndSelect(provinceCd);
+			modalDialog.searchAndSelect(provinceCd);
 		}
 	}
 	
 	public void setCity(String cityCd) {
-		ModalDialog cityLov = openLov(citySearchBtnLocator);
+		modalDialog.openLov(citySearchBtnLocator);
 
-		if(cityLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("City LOV overlay is displayed.");
-			cityLov.searchAndSelect(cityCd);
+			modalDialog.searchAndSelect(cityCd);
 		}
 	}
 	
 	public void setDistrict(String districtCd) {
-		ModalDialog districtLov = openLov(districtSearchBtnLocator);
+		modalDialog.openLov(districtSearchBtnLocator);
 
-		if(districtLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("District LOV overlay is displayed.");
-			districtLov.searchAndSelect(districtCd);
+			modalDialog.searchAndSelect(districtCd);
 		}
 	}
 	
 	public void setBlock(String blockCd) {
-		ModalDialog blockLov = openLov(blockSearchBtnLocator);
+		modalDialog.openLov(blockSearchBtnLocator);
 
-		if(blockLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Block LOV overlay is displayed.");
-			blockLov.searchAndSelect(blockCd);
+			modalDialog.searchAndSelect(blockCd);
 		}
 	}
 	
 	public void setRisk(String riskCd) {
-		ModalDialog riskLov = openLov(riskSearchBtnLocator);
+		modalDialog.openLov(riskSearchBtnLocator);
 
-		if(riskLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Risk LOV overlay is displayed.");
-			riskLov.searchAndSelect(riskCd);
+			modalDialog.searchAndSelect(riskCd);
 		}
 	}
 	
 	public void setOccupancy(String occupancyCd) {
-		ModalDialog occupancyLov = openLov(occupancySearchBtnLocator);
+		modalDialog.openLov(occupancySearchBtnLocator);
 
-		if(occupancyLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Occupancy LOV overlay is displayed.");
-			occupancyLov.searchAndSelect(occupancyCd);
+			modalDialog.searchAndSelect(occupancyCd);
 		}
 	}
 	
 	public void setTariffZone(String tariffZn) {
-		ModalDialog tariffZoneLov = openLov(tariffZoneSearchBtnLocator);
+		modalDialog.openLov(tariffZoneSearchBtnLocator);
 
-		if(tariffZoneLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Tariff Zone LOV overlay is displayed.");
-			tariffZoneLov.searchAndSelect(tariffZn);
+			modalDialog.searchAndSelect(tariffZn);
 		}
 	}
 	
 	public void setTariffCode(String tariffCd) {
-		ModalDialog tariffCodeLov = openLov(tariffCodeSearchBtnLocator);
+		modalDialog.openLov(tariffCodeSearchBtnLocator);
 
-		if(tariffCodeLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Tariff Code LOV overlay is displayed.");
-			tariffCodeLov.searchAndSelect(tariffCd);
+			modalDialog.searchAndSelect(tariffCd);
 		}
 	}
 	
 	public void setConstruction(String constructionCd) {
-		ModalDialog ConstructionLov = openLov(constructionSearchBtnLocator);
+		modalDialog.openLov(constructionSearchBtnLocator);
 
-		if(ConstructionLov.isDisplayed()) {
+		if(modalDialog.isDisplayed()) {
 			LOGGER.info("Construction LOV overlay is displayed.");
-			ConstructionLov.searchAndSelect(constructionCd);
+			modalDialog.searchAndSelect(constructionCd);
 		}
 	}
 	
 	public void setConstructionRemarks(String constRemrksTxt) {
 		try {
-			driver.findElement(constructionRemarksField).sendKeys(constRemrksTxt);
+			driver.findElement(constructionRemarksTxtLocator).sendKeys(constRemrksTxt);
 			LOGGER.info("Construction Remarks field value set to '" + constRemrksTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -167,7 +169,7 @@ public class QuotationAdditionalInformationBlock {
 	
 	public void setOccupancyRemarks(String occupancyRemrksTxt) {
 		try {
-			driver.findElement(occupancyRemarksField).sendKeys(occupancyRemrksTxt);
+			driver.findElement(occupancyRemarksTxtLocator).sendKeys(occupancyRemrksTxt);
 			LOGGER.info("Occupancy Remarks field value set to '" + occupancyRemrksTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -193,46 +195,46 @@ public class QuotationAdditionalInformationBlock {
 		}
 	}
 	
-	public void setLocation1(String location1) {
-		try {
-			driver.findElement(locationField1).sendKeys(location1);
-			LOGGER.info("Location (1) field value set to '" + location1 + "'.");
-		} catch (TimeoutException e) {
-			LOGGER.error(e);
+	public void setLocation(String location1, String location2, String location3) {
+		
+		if (location1 != null || location1 != "") {
+			try {
+				driver.findElement(location1FldLocator).sendKeys(location1);
+				LOGGER.info("Location (1) field value set to '" + location1 + "'.");
+			} catch (TimeoutException e) {
+				LOGGER.error(e);
+			}
+		}
+		
+		if (location2 != null || location2 != "") {
+			try {
+				driver.findElement(location2FldLocator).sendKeys(location2);
+				LOGGER.info("Location (2) field value set to '" + location2 + "'.");
+			} catch (TimeoutException e) {
+				LOGGER.error(e);
+			}
+		}
+		
+		if (location3 != null || location3 != "") {
+			try {
+				driver.findElement(location3FldLocator).sendKeys(location3);
+				LOGGER.info("Location (3) field value set to '" + location3 + "'.");
+			} catch (TimeoutException e) {
+				LOGGER.error(e);
+			}
 		}
 	}
 	
-	public void setLocation2(String location2) {
+	public void setCoordinates(String latitude, String longitude) {
 		try {
-			driver.findElement(locationField2).sendKeys(location2);
-			LOGGER.info("Location (2) field value set to '" + location2 + "'.");
+			driver.findElement(latitudeFldLocator).sendKeys(latitude);
+			LOGGER.info("Latitude field value set to '" + latitude + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 		}
-	}
-	
-	public void setLocation3(String location3) {
 		try {
-			driver.findElement(locationField3).sendKeys(location3);
-			LOGGER.info("Location (3) field value set to '" + location3 + "'.");
-		} catch (TimeoutException e) {
-			LOGGER.error(e);
-		}
-	}
-	
-	public void setLatitude(String latitudeTxt) {
-		try {
-			driver.findElement(latitudeField).sendKeys(latitudeTxt);
-			LOGGER.info("Latitude field value set to '" + latitudeTxt + "'.");
-		} catch (TimeoutException e) {
-			LOGGER.error(e);
-		}
-	}
-	
-	public void setLongitude(String longitudeTxt) {
-		try {
-			driver.findElement(longitudeField).sendKeys(longitudeTxt);
-			LOGGER.info("Longitude field value set to '" + longitudeTxt + "'.");
+			driver.findElement(longitudeFldLocator).sendKeys(longitude);
+			LOGGER.info("Longitude field value set to '" + longitude + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 		}
@@ -240,7 +242,7 @@ public class QuotationAdditionalInformationBlock {
 	
 	public void setFront(String frontTxt) {
 		try {
-			driver.findElement(frontField).sendKeys(frontTxt);
+			driver.findElement(frontTxtLocator).sendKeys(frontTxt);
 			LOGGER.info("Boundary Front field value set to '" + frontTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -249,7 +251,7 @@ public class QuotationAdditionalInformationBlock {
 	
 	public void setRight(String rightTxt) {
 		try {
-			driver.findElement(rightField).sendKeys(rightTxt);
+			driver.findElement(rightfrontTxtLocator).sendKeys(rightTxt);
 			LOGGER.info("Boundary Rigth field value set to '" + rightTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -258,7 +260,7 @@ public class QuotationAdditionalInformationBlock {
 	
 	public void setLeft(String leftTxt) {
 		try {
-			driver.findElement(leftField).sendKeys(leftTxt);
+			driver.findElement(leftfrontTxtLocator).sendKeys(leftTxt);
 			LOGGER.info("Boundary Left field value set to '" + leftTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
@@ -267,30 +269,20 @@ public class QuotationAdditionalInformationBlock {
 	
 	public void setRear(String rearTxt) {
 		try {
-			driver.findElement(rearField).sendKeys(rearTxt);
+			driver.findElement(rearfrontTxtLocator).sendKeys(rearTxt);
 			LOGGER.info("Boundary Rear field value set to '" + rearTxt + "'.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 		}
 	}
 	
-	public void clickApplyChanges() {
+	public void applyChanges() {
 		try {
-			driver.findClickableElement(applyChangesButton).click();
+			driver.findClickableElement(applyChangesBtnLocator).click();
 			LOGGER.info("'Apply Changes' button clicked.");
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 		}
-	}
-	
-	private ModalDialog openLov(By lovLocator) {
-		try {
-			driver.findClickableElement(lovLocator).click();
-			LOGGER.info("LOV search button clicked.");
-		} catch (TimeoutException e) {
-			LOGGER.error(e);
-		}
-		return new ModalDialog(driver);
 	}
 	
 }

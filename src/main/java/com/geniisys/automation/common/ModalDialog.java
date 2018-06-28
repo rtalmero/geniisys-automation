@@ -56,5 +56,14 @@ public class ModalDialog {
 		}
 		LOGGER.info("Prompt closed.");
 	}
+	
+	public void openLov(By lovLocator) {
+		try {
+			driver.findClickableElement(lovLocator).click();
+			LOGGER.info("LOV search button clicked.");
+		} catch (TimeoutException e) {
+			LOGGER.error(e);
+		}
+	}
 
 }

@@ -4,7 +4,7 @@
 <listeners>
 <listener class-name = "com.geniisys.automation.common.Listeners"/>
 </listeners>
-  <test thread-count="5" name="Test">
+  <test thread-count="5" name="MARKETING">
     <classes>
       <!-- <class name="com.geniisys.automation.TestNG2"/>
       <class name="com.geniisys.automation.TestNG3"/> -->

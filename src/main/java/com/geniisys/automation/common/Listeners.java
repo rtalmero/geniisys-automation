@@ -10,7 +10,7 @@ import com.geniisys.automation.BaseTest;
 
 public class Listeners implements ITestListener{
 	
-	private static final Logger LOGGER = LogManager.getLogger(BrowserDriver.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(Listeners.class.getName());
 	
 	@Override
 	public void onStart(ITestContext arg0) {
