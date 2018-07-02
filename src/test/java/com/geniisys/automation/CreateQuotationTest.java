@@ -25,11 +25,12 @@ public class CreateQuotationTest extends BaseTest {
 	CreateQuotationMenu createQuoteMenu;
 	QuotationInformationPage quoteInfoPage;
 	BondPolicyDataPage bondPolicyDataPage;	
+	TestData testData;
 	
 	
 	
 	@Test(priority = 0, dataProvider = "getData", dataProviderClass = TestData.class)
-	public void createQuotation(String lineCd, HashMap<String, Object[][]> data) {
+	public void createQuotation(String lineCd, HashMap<String, Object[][]> data) throws Exception {
 		
 		homePage = new HomePage(driver);
 		mktgPage = homePage.goToMarketingPage();
@@ -45,6 +46,7 @@ public class CreateQuotationTest extends BaseTest {
 			createQuoteMenu = new CreateQuotationMenu(driver);
 			quoteInfoPage =  createQuoteMenu.goToQuotationInfomation();
 			
+			quoteInfoPage.getItemInfoBlk().saveQuoteNo(lineCd);
 			popQuotationItmInfoBlk(data.get("quotationItmInfoBlk"));
 			popQuotationPrilInfoBlk(data.get("quotationPerilInfoBlk"));
 			
@@ -55,6 +57,7 @@ public class CreateQuotationTest extends BaseTest {
 			createQuoteMenu = new CreateQuotationMenu(driver);
 			bondPolicyDataPage =  createQuoteMenu.goToBondPolicyDataPage();
 			
+			bondPolicyDataPage.getBondBasicInformationBlk().saveQuoteNo(lineCd);
 			popQuotationBondBasInfoBlk(data.get("quotationBondBasicInfoBlk"));
 			
 		} else if (lineCd.contains("FI")) {
@@ -67,14 +70,12 @@ public class CreateQuotationTest extends BaseTest {
 			
 			quoteInfoPage.getAddInfoBlk().show();
 			
+			quoteInfoPage.getItemInfoBlk().saveQuoteNo(lineCd);
 			popQuotationAddInfoBlk(data.get("quotationAddInfoBlkFI"));
-			
 			popQuotationPrilInfoBlk(data.get("quotationPerilInfoBlk"));
 			
 		}
-		
 	}
-	
 	
 	public void popQuotationBasicinfo(Object[][] quotationBasicinfo){
 		for (int i = 0 ; i < quotationBasicinfo.length ; i++) {
@@ -111,7 +112,7 @@ public class CreateQuotationTest extends BaseTest {
 				quoteInfoPage.getAddInfoBlk().setProvince(addInfoBlk.get("province").toString());
 				quoteInfoPage.getAddInfoBlk().setCity(addInfoBlk.get("city").toString());
 				quoteInfoPage.getAddInfoBlk().setDistrict(addInfoBlk.get("district").toString());
-				quoteInfoPage.getAddInfoBlk().setRisk(addInfoBlk.get("risks").toString());
+//				quoteInfoPage.getAddInfoBlk().setRisk(addInfoBlk.get("risks").toString());
 				quoteInfoPage.getAddInfoBlk().setOccupancy(addInfoBlk.get("occupancy").toString());
 				quoteInfoPage.getAddInfoBlk().setTariffZone(addInfoBlk.get("tariff_zone").toString());
 				quoteInfoPage.getAddInfoBlk().setTariffCode(addInfoBlk.get("tariff_cd").toString());

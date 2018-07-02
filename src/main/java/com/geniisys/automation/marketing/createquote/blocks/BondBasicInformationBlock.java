@@ -1,5 +1,7 @@
 package com.geniisys.automation.marketing.createquote.blocks;
 
+import java.util.HashMap;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -7,10 +9,12 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
 
 import com.geniisys.automation.common.BrowserDriver;
+import com.geniisys.automation.common.TestData;
 
 public class BondBasicInformationBlock {
 
 	private BrowserDriver driver;
+	TestData testData; 
 	private static final Logger LOGGER = LogManager.getLogger(BondBasicInformationBlock.class.getName());
 	
 	private final By obligeeLOVLocator = By.xpath("//select[@id='obligee']");
@@ -18,9 +22,11 @@ public class BondBasicInformationBlock {
 	private final By bondUndertakingFldLocator = By.xpath("//textarea[@id='bondDtl']");
 	private final By indemnityFldLocator = By.xpath("//textarea[@id='indemnityText']");
 	private final By notaryLOVLocator = By.xpath("//select[@id='dspNPName']");
+	private final By quoteNoFldLocator = By.xpath("//input[@id='quoteNo']");
 	
 	public BondBasicInformationBlock(BrowserDriver driver) {
 		this.driver = driver;
+		testData = new TestData();
 	}
 	
 	public void setObligee(String obligeeCd) {
@@ -69,6 +75,21 @@ public class BondBasicInformationBlock {
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 		}
+	}
+	
+	public String getQuoteNo() {
+		return driver.findClickableElement(quoteNoFldLocator).getAttribute("value");
+	}
+	
+	public void saveQuoteNo(String group) throws Exception {
+		HashMap<String, String> dataMap = new HashMap<String, String>();
+		dataMap.put("group", group);
+		try {
+			dataMap.put("quotation_no", getQuoteNo());			
+		} catch (TimeoutException e) {
+			LOGGER.error(e);
+		}
+		testData.addDataUnderwriting("createParPolicy", "selectQuotation", dataMap);
 	}
 	
 	
